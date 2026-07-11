@@ -1,0 +1,30 @@
+services:
+  mongo:
+    ports:
+      - "27017:27017"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      target: development
+    read_only: false
+    volumes:
+      - ./apps/api/src:/app/apps/api/src
+    environment:
+      NODE_ENV: development
+      COREPACK_ENABLE_DOWNLOAD_FALLBACK: "0"
+
+  web:
+    build:
+      target: development
+    read_only: false
+    volumes:
+      - ./apps/web/src:/app/apps/web/src
+      - ./apps/web/public:/app/apps/web/public
+    environment:
+      NODE_ENV: development
+      COREPACK_ENABLE_DOWNLOAD_FALLBACK: "0"
+    command: ["sh", "-c", "cd /app/apps/web && next dev"]

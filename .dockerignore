@@ -1,0 +1,55 @@
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Node modules — never copy into image
+**/node_modules
+**/.pnpm-store
+
+# Build outputs
+**/.next
+**/dist
+**/build
+**/.turbo
+
+# Development/local files
+**/*.env
+**/*.env.local
+**/*.env.*.local
+**/.env.development
+.env.example
+
+# Logs
+**/npm-debug.log*
+**/pnpm-debug.log*
+**/*.log
+
+# Editor
+.vscode
+.idea
+**/*.swp
+**/*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests
+**/coverage
+**/__tests__
+**/*.test.ts
+**/*.spec.ts
+
+# Docker files themselves
+**/Dockerfile*
+**/docker-compose*
+
+# CI
+.github
+.gitlab-ci.yml
+
+# Docs
+README.md
+CHANGELOG.md
+docs/

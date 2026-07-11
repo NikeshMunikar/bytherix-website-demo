@@ -1,0 +1,119 @@
+# ── Environment files — NEVER commit these ────────────────────────────────────
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+.env.staging
+
+# Covers all apps
+apps/**/.env
+apps/**/.env.local
+apps/**/.env.*
+packages/**/.env
+
+# ── Dependencies ──────────────────────────────────────────────────────────────
+node_modules
+**/node_modules
+
+# pnpm
+.pnpm-store
+.pnpm-debug.log
+
+# ── Build outputs ─────────────────────────────────────────────────────────────
+# Next.js
+apps/web/.next
+apps/web/out
+
+# TypeScript
+apps/api/dist
+apps/api/build
+packages/shared/dist
+
+# Turborepo
+.turbo
+**/.turbo
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log.*
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+coverage
+**/.coverage
+**/coverage
+*.lcov
+.nyc_output
+
+# ── OS files ──────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Editor ────────────────────────────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.history
+
+# ── Docker local override ─────────────────────────────────────────────────────
+# Override file has dev port exposures — don't commit if it has secrets
+# Comment this out if your override file has no secrets
+# docker-compose.override.yml
+
+# Docker env files
+docker-compose.env
+.docker.env
+docker.env
+*.docker.env
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+.cache
+.temp
+tmp/
+temp/
+
+# ── Next.js specific ──────────────────────────────────────────────────────────
+apps/web/next-env.d.ts
+apps/web/.next/
+apps/web/out/
+apps/web/.vercel
+
+# ── Uploaded files / user content ────────────────────────────────────────────
+uploads/
+public/uploads/
+
+# Yarn berry cache (if using Yarn 4)
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Wrong lockfiles for this project
+package-lock.json
+pnpm-lock.yaml
+.pnpm-store
