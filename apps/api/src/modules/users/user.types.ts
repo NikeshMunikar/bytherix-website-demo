@@ -10,7 +10,7 @@ export interface IUser {
   _id: Types.ObjectId
 
   email: string
-  password: string
+  password?: string
 
   firstName: string
   lastName: string
