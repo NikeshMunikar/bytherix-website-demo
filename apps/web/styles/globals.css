@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* ── Logo-extracted palette ───────────────────────────────────────────────
+     Blue:  sampled from circuit/robotics segment
+     Green: sampled from code segment  
+     Red:   sampled from security/shield segment
+  ── */
+
+  /* Backgrounds — warmer than pure navy, less "bootstrap dark" */
+  --color-bg-base:        #0D1117;   /* GitHub-dark inspired, warmer than #0A1628 */
+  --color-bg-surface:     #161B22;   /* cards, panels */
+  --color-bg-elevated:    #1C2128;   /* modals, dropdowns */
+  --color-bg-subtle:      #21262D;   /* hover states */
+
+  /* Logo blue — deeper and more trustworthy than current */
+  --color-brand-blue:     #2563EB;   /* primary actions */
+  --color-brand-blue-dim: #1D4ED8;   /* hover */
+  --color-brand-blue-muted: rgba(37,99,235,0.12);
+  --color-brand-blue-border: rgba(37,99,235,0.25);
+
+  /* Logo green — forest, not neon */
+  --color-brand-green:    #16A34A;
+  --color-brand-green-dim:#15803D;   /* hover */
+  --color-brand-green-muted: rgba(22,163,74,0.12);
+  --color-brand-green-border: rgba(22,163,74,0.25);
+
+  /* Logo red — deep crimson, not flat */
+  --color-brand-red:      #DC2626;
+  --color-brand-red-dim:  #B91C1C;
+  --color-brand-red-muted: rgba(220,38,38,0.12);
+
+  /* Text hierarchy */
+  --color-text-primary:   #F0F6FC;   /* headings */
+  --color-text-secondary: #8B949E;   /* body, descriptions */
+  --color-text-tertiary:  #484F58;   /* placeholders, disabled */
+  --color-text-link:      #2563EB;
+
+  /* Borders */
+  --color-border-default: #30363D;
+  --color-border-muted:   #21262D;
+  --color-border-emphasis:#58A6FF;
+
+  /* Accent colors for category differentiation */
+  --color-accent-purple:  #8B5CF6;
+  --color-accent-amber:   #D97706;
+  --color-accent-sky:     #0284C7;
+  --color-accent-teal:    #0D9488;
+
+  /* Light mode tokens */
+  --color-bg-base-light:      #FFFFFF;
+  --color-bg-surface-light:   #F6F8FA;
+  --color-bg-elevated-light:  #EAEEF2;
+  --color-text-primary-light: #1C2128;
+  --color-text-secondary-light:#57606A;
+  --color-border-default-light:#D0D7DE;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+
+  /* Spacing scale — slightly more generous than default */
+  --spacing-section: 6rem;
+
+  /* Animations */
+  --animate-float:          float 6s ease-in-out infinite;
+  --animate-float-slow:     float 8s ease-in-out infinite;
+  --animate-fade-up:        fadeUp 0.5s ease-out forwards;
+  --animate-terminal-blink: blink 1.2s step-end infinite;
+  --animate-shimmer:        shimmer 2s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33%       { transform: translateY(-10px) rotate(0.5deg); }
+    66%       { transform: translateY(-6px) rotate(-0.5deg); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% center; }
+    to   { background-position: 200% center; }
+  }
+}
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Dark mode (default) ─────────────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+  --bg-base:        var(--color-bg-base);
+  --bg-surface:     var(--color-bg-surface);
+  --bg-elevated:    var(--color-bg-elevated);
+  --bg-subtle:      var(--color-bg-subtle);
+  --text-primary:   var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-tertiary:  var(--color-text-tertiary);
+  --border:         var(--color-border-default);
+  --border-muted:   var(--color-border-muted);
+}
+
+/* ── Light mode ──────────────────────────────────────────────────────────── */
+.light {
+  color-scheme: light;
+  --bg-base:        var(--color-bg-base-light);
+  --bg-surface:     var(--color-bg-surface-light);
+  --bg-elevated:    var(--color-bg-elevated-light);
+  --bg-subtle:      #F0F3F6;
+  --text-primary:   var(--color-text-primary-light);
+  --text-secondary: var(--color-text-secondary-light);
+  --text-tertiary:  #8C959F;
+  --border:         var(--color-border-default-light);
+  --border-muted:   #EAEEF2;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-blue); }
+
+/* ── Selection ───────────────────────────────────────────────────────────── */
+::selection { background: rgba(37,99,235,0.3); color: var(--text-primary); }
+
+/* ── Focus ───────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── Semantic component classes ──────────────────────────────────────────── */
+
+/* Card — used everywhere, responds to light/dark */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card:hover {
+  border-color: var(--color-brand-blue-border);
+  box-shadow: 0 4px 24px rgba(37,99,235,0.08), 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Card elevated — slightly more prominent */
+.card-elevated {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* Gradient text utilities */
+.text-gradient-blue {
+  background: linear-gradient(135deg, #60A5FA 0%, #2563EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-green {
+  background: linear-gradient(135deg, #4ADE80 0%, #16A34A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-red {
+  background: linear-gradient(135deg, #F87171 0%, #DC2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-brand {
+  background: linear-gradient(135deg, #60A5FA 0%, #4ADE80 50%, #F87171 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn:hover:not(:disabled) { transform: translateY(-1px); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--color-brand-blue);
+  color: white;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 0 0 1px rgba(37,99,235,0.5) inset;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-brand-blue-dim);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+}
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--color-brand-blue-border);
+  background: var(--bg-subtle);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+/* Input base */
+.input {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.875rem;
+  padding: 0.625rem 1rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+}
+.input::placeholder { color: var(--text-tertiary); }
+.input:focus {
+  border-color: var(--color-brand-blue);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+.input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-brand-red);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  letter-spacing: 0.01em;
+}
+
+/* Section label (eyebrow text) */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-brand-blue);
+}
+
+/* Circuit grid background */
+.circuit-grid {
+  background-image:
+    linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Terminal cursor */
+.terminal-cursor::after {
+  content: '▋';
+  animation: blink 1.2s step-end infinite;
+  color: var(--color-brand-green);
+  margin-left: 1px;
+}
+
+/* Scanlines — DH overlay only */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0,255,80,0.015) 2px, rgba(0,255,80,0.015) 4px
+  );
+  z-index: 1;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
