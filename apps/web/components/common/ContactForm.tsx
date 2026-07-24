@@ -33,7 +33,7 @@ export function ContactForm() {
     <div className="text-center py-12">
       <CheckCircle className="w-14 h-14 text-bx-green mx-auto mb-4" />
       <h3 className="text-xl font-bold text-bx-white mb-2">Message sent!</h3>
-      <p className="text-bx-slate text-sm">We'll get back to you within 24 hours.</p>
+      <p className="text-bx-slate text-sm">We&apos;ll get back to you within 24 hours.</p>
     </div>
   )
 
