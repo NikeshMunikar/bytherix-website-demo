@@ -4,8 +4,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
 import { apiClient } from '@/lib/api-client'
 import { useAuthStore } from '@/store/auth.store'
 
@@ -17,6 +18,7 @@ type F = z.infer<typeof schema>
 
 export function LoginForm() {
   const router  = useRouter()
+  const searchParams = useSearchParams()
   const setAuth = useAuthStore((s) => s.setAuth)
   const [showPw, setShowPw] = useState(false)
   const [err, setErr]       = useState('')
@@ -27,7 +29,9 @@ export function LoginForm() {
     try {
       const res = await apiClient.post<{ data: { accessToken: string; user: never } }>('/auth/login', data)
       setAuth(res.data.data.user, res.data.data.accessToken)
-      router.push('/dashboard')
+      toast.success('Welcome back!')
+      const redirect = searchParams.get('redirect')
+      router.push(redirect && redirect.startsWith('/') ? redirect : '/dashboard')
     } catch { setErr('Invalid email or password') }
   }
 

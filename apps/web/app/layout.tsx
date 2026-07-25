@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
+import { Toaster } from 'sonner'
 import { QueryProvider } from '@/components/providers/QueryProvider'
+import { AuthProvider } from '@/components/providers/AuthProvider'
 import '@/styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -86,7 +88,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         })}} />
       </head>
       <body className="bg-bx-navy text-bx-white font-sans antialiased">
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider><AuthProvider>{children}</AuthProvider></QueryProvider>
+        <Toaster
+          theme="dark"
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: '#0D1A2E',
+              border: '1px solid #1E2D4A',
+              color: '#F8FAFF',
+            },
+          }}
+        />
       </body>
     </html>
   )

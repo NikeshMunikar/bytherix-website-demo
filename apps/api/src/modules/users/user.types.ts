@@ -30,4 +30,9 @@ export interface IUser {
   deletedAt?: Date | undefined;
 }
 
-export type UserDocument = HydratedDocument<IUser>;
+export type UserDocument = HydratedDocument<IUser>
+
+export interface UserListFilters {
+  q?:    string
+  role?: UserRole
+}

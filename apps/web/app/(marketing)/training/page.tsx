@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { TrainingHero } from '@/components/courses/TrainingHero'
 import { CourseGrid } from '@/components/courses/CourseGrid'
 
@@ -23,6 +24,7 @@ export default function TrainingPage({ searchParams }: Props) {
       <Suspense fallback={null}>
         <CourseGridLoader searchParams={searchParams} />
       </Suspense>
+      <CourseGrid filters={filters} />
     </>
   )
 }

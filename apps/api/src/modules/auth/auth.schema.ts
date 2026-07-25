@@ -44,3 +44,7 @@ export const changePasswordSchema = {
 export const verifyEmailSchema = {
   query: z.object({ token: z.string().min(1) }),
 }
+
+export const sessionIdParamSchema = {
+  params: z.object({ id: z.string().regex(/^[0-9a-fA-F]{24}$/, 'Invalid session id') }),
+}

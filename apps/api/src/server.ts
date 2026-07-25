@@ -4,6 +4,7 @@ import { config }          from './config'
 import { logger }          from './config/logger'
 import { connectDatabase } from './config/database'
 import { connectRedis }    from './config/redis'
+import { startEmailWorker, stopEmailWorker } from './modules/email/email.worker'
 import http                from 'http'
 
 const server = http.createServer(app)
@@ -11,6 +12,8 @@ const server = http.createServer(app)
 async function bootstrap(): Promise<void> {
   await connectDatabase()
   await connectRedis()
+  startEmailWorker()
+  logger.info('📧 Email worker started')
 }
 
 server.listen(config.PORT, () => {
@@ -34,6 +37,7 @@ process.on('uncaughtException', (err) => {
 
 async function shutdown(signal: string): Promise<void> {
   logger.info(`${signal} — graceful shutdown`)
+  await stopEmailWorker()
   server.close(() => {
     logger.info('HTTP server closed')
     process.exit(0)

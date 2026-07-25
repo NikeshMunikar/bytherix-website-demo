@@ -1,8 +1,28 @@
 'use client'
+import { useEffect, useState } from 'react'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Search } from 'lucide-react'
 
 export function TrainingHero() {
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const [query, setQuery] = useState(searchParams.get('q') ?? '')
+
+  const pushQuery = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (value.trim()) params.set('q', value.trim())
+    else params.delete('q')
+    router.replace(params.toString() ? `${pathname}?${params.toString()}` : pathname)
+  }
+
+  useEffect(() => {
+    const handle = setTimeout(() => pushQuery(query), 400)
+    return () => clearTimeout(handle)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query])
+
   return (
     <section className="pt-28 pb-14 bg-bx-navy text-center relative">
       <div className="circuit-grid absolute inset-0 opacity-50" />
@@ -19,17 +39,19 @@ export function TrainingHero() {
           className="text-bx-slate mb-8">
           100+ expert-led courses with real projects, certificates, and career support.
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+        <motion.form
+          onSubmit={(e) => { e.preventDefault(); pushQuery(query) }}
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
           className="flex items-center gap-3 max-w-lg mx-auto">
           <div className="relative flex-1">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-bx-muted" />
-            <input type="search" placeholder="Search courses..."
+            <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search courses..."
               className="w-full pl-11 pr-4 py-3 rounded-xl bg-bx-card border border-bx-border text-bx-white placeholder:text-bx-muted text-sm focus:outline-none focus:border-bx-blue transition-colors" />
           </div>
-          <button className="px-5 py-3 rounded-xl bg-bx-blue hover:bg-bx-blue-light text-white font-semibold text-sm transition-colors">
+          <button type="submit" className="px-5 py-3 rounded-xl bg-bx-blue hover:bg-bx-blue-light text-white font-semibold text-sm transition-colors">
             Search
           </button>
-        </motion.div>
+        </motion.form>
       </div>
     </section>
   )

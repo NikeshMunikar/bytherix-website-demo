@@ -1,5 +1,6 @@
 import { DashboardSidebar } from '@/components/layout/DashboardSidebar'
 import { DashboardHeader } from '@/components/layout/DashboardHeader'
+import { RequireAuth } from '@/components/auth/RequireAuth'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (

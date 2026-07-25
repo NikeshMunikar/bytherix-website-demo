@@ -4,7 +4,7 @@ import { authController }           from './auth.controller'
 import { validate }                 from '../../middleware/validate'
 import { authenticate }             from '../../middleware/authenticate'
 import { authLimiter, passwordResetLimiter, emailVerifyLimiter } from '../../middleware/rateLimiter'
-import { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema, changePasswordSchema, verifyEmailSchema } from './auth.schema'
+import { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema, changePasswordSchema, verifyEmailSchema, sessionIdParamSchema } from './auth.schema'
 
 const router = Router()
 
@@ -18,5 +18,6 @@ router.post('/forgot-password',  passwordResetLimiter, validate(forgotPasswordSc
 router.post('/reset-password',   passwordResetLimiter, validate(resetPasswordSchema),   authController.resetPassword)
 router.post('/change-password',  authenticate,         validate(changePasswordSchema),  authController.changePassword)
 router.get( '/sessions',         authenticate,                                          authController.sessions)
+router.delete('/sessions/:id',   authenticate,         validate(sessionIdParamSchema),  authController.revokeSession)
 
 export { router as authRouter }

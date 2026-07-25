@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { LoginForm } from '@/components/auth/LoginForm'
 
 export const metadata: Metadata = { title: 'Sign In', robots: { index: false, follow: false } }
@@ -10,7 +11,9 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold text-bx-white mb-2">Welcome back</h1>
         <p className="text-bx-slate text-sm">Sign in to continue learning</p>
       </div>
-      <LoginForm />
+      <Suspense fallback={null}>
+        <LoginForm />
+      </Suspense>
     </div>
   )
 }
