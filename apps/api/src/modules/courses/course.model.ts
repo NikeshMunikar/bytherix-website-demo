@@ -54,5 +54,11 @@ courseSchema.index({ category: 1, isPublished: 1 })
 courseSchema.index({ isFeatured: 1, isPublished: 1 })
 courseSchema.index({ title: 'text', description: 'text', tags: 'text' })
 
+// Soft-delete filter
+courseSchema.pre(/^find/, function (next) {
+  (this as mongoose.Query<unknown, ICourse>).where({ deletedAt: null });
+  next();
+})
+
 export const Course:Model<ICourse> =
   mongoose.models.Course as Model<ICourse> || mongoose.model<ICourse>('Course', courseSchema)

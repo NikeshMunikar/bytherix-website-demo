@@ -1,4 +1,5 @@
 import express               from 'express'
+import path                  from 'path'
 import helmet                from 'helmet'
 import cors                  from 'cors'
 import cookieParser          from 'cookie-parser'
@@ -12,6 +13,14 @@ import { correlationId }     from './middleware/correlationId'
 import { errorHandler }      from './middleware/errorHandler'
 import { generalLimiter }    from './middleware/rateLimiter'
 import { authRouter }        from './modules/auth/auth.routes'
+import { coursesRouter }     from './modules/courses/courses.routes'
+import { contactRouter }     from './modules/contact/contact.routes'
+import { usersRouter }       from './modules/users/user.routes'
+import { enrollmentsRouter } from './modules/enrollments/enrollments.routes'
+import { adminRouter }       from './modules/admin/admin.routes'
+import { uploadRouter }      from './modules/upload/upload.routes'
+import { uploadsDir }        from './modules/upload/upload.config'
+import { postsRouter }       from './modules/blog/posts.routes'
 
 Sentry.init({
   ...(process.env.SENTRY_DSN && {
@@ -71,7 +80,17 @@ app.get('/health', (_req, res) => res.json({ status: 'ok',    timestamp: new Dat
 app.get('/ready',  (_req, res) => res.json({ status: 'ready', timestamp: new Date().toISOString() }))
 
 // ── Routes ────────────────────────────────────────────────────────────────────
-app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/auth',     authRouter)
+app.use('/api/v1/courses',  coursesRouter)
+app.use('/api/v1/contact',  contactRouter)
+app.use('/api/v1/users',    usersRouter)
+app.use('/api/v1/enrollments', enrollmentsRouter)
+app.use('/api/v1/admin', adminRouter)
+app.use('/api/v1/upload', uploadRouter)
+app.use('/api/v1/posts', postsRouter)
+
+// ── Uploaded files ────────────────────────────────────────────────────────────
+app.use('/uploads', express.static(uploadsDir, { maxAge: '7d' }))
 
 // ── 404 ───────────────────────────────────────────────────────────────────────
 app.use((_req, res) => res.status(404).json({ success: false, error: 'Route not found' }))

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { TrainingHero } from '@/components/courses/TrainingHero'
 import { CourseGrid } from '@/components/courses/CourseGrid'
 
@@ -14,7 +15,9 @@ export default async function TrainingPage({ searchParams }: Props) {
   const filters = await searchParams
   return (
     <>
-      <TrainingHero />
+      <Suspense fallback={null}>
+        <TrainingHero />
+      </Suspense>
       <CourseGrid filters={filters} />
     </>
   )

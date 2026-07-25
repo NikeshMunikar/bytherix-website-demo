@@ -11,6 +11,7 @@ const envSchema = z.object({
   JWT_REFRESH_EXPIRES_IN:  z.string().default('7d'),
   COOKIE_SECRET:           z.string().min(32),
   CLIENT_URL:              z.string().url().default('http://localhost:3000'),
+  API_PUBLIC_URL:          z.string().url().default('http://localhost:5000'),
   SMTP_HOST:               z.string().default('smtp.gmail.com'),
   SMTP_PORT:               z.coerce.number().default(587),
   SMTP_USER:               z.string().default(''),

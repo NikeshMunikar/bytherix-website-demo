@@ -5,6 +5,7 @@ import { config }    from '../../config'
 import { UserRepository } from '../users/user.repository'
 import { Session }   from '../sessions/session.model'
 import { auditService }   from '../audit/audit.service'
+import { emailService }   from '../email/email.service'
 import {
   UnauthorizedError, ConflictError, NotFoundError,
 } from '../../shared/errors/AppError'
@@ -42,7 +43,9 @@ export class AuthService {
     const token        = crypto.randomBytes(32).toString('hex')
     const expiry       = new Date(Date.now() + 24 * 60 * 60 * 1000)
 
-    return repo.create({ ...data, password, emailVerificationToken: token, emailVerificationExpiry: expiry })
+    const user = await repo.create({ ...data, password, emailVerificationToken: token, emailVerificationExpiry: expiry })
+    await emailService.sendVerificationEmail(user, token)
+    return user
   }
 
   async login(email: string, password: string, device: { ip: string; userAgent: string; fingerprint: string }) {
@@ -109,6 +112,7 @@ export class AuthService {
     const user = await repo.findByVerificationToken(token)
     if (!user) throw new NotFoundError('Verification token')
     await repo.update(user._id, { isEmailVerified: true, emailVerificationToken: undefined, emailVerificationExpiry: undefined })
+    await emailService.sendWelcomeEmail(user)
   }
 
   async forgotPassword(email: string): Promise<void> {
@@ -117,7 +121,7 @@ export class AuthService {
     const token  = crypto.randomBytes(32).toString('hex')
     const hashed = this.sha256(token)
     await repo.update(user._id, { passwordResetToken: hashed, passwordResetExpiry: new Date(Date.now() + 60 * 60 * 1000) })
-    // TODO: enqueue email via BullMQ with plaintext token
+    await emailService.sendPasswordResetEmail(user, token)
   }
 
   async resetPassword(token: string, newPassword: string): Promise<void> {
@@ -130,7 +134,7 @@ export class AuthService {
   }
 
   async changePassword(userId: string, currentPassword: string, newPassword: string): Promise<void> {
-    const user = await repo.findByEmail(userId, true)
+    const user = await repo.findByIdWithPassword(userId)
     if (!user) throw new NotFoundError('User')
     const valid = await argon2.verify(user.password, currentPassword)
     if (!valid) throw new UnauthorizedError('Current password is incorrect')
@@ -142,6 +146,12 @@ export class AuthService {
   async getSessions(userId: string) {
     return Session.find({ userId, isRevoked: false, expiresAt: { $gt: new Date() } })
       .select('-tokenHash').sort({ lastUsedAt: -1 })
+  }
+
+  async revokeSession(userId: string, sessionId: string): Promise<void> {
+    const session = await Session.findOne({ _id: sessionId, userId, isRevoked: false })
+    if (!session) throw new NotFoundError('Session')
+    await Session.findByIdAndUpdate(sessionId, { isRevoked: true })
   }
 }
 

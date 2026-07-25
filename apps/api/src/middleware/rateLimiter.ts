@@ -39,3 +39,10 @@ export const emailVerifyLimiter = rateLimit({
   store: store("rl:email-verify:"),
   message: { success: false, error: "Too many verification attempts" },
 });
+
+export const contactLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 10,
+  store: store("rl:contact:"),
+  message: { success: false, error: "Too many messages sent. Please try again later." },
+});

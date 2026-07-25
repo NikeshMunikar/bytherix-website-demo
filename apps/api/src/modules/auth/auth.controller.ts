@@ -80,4 +80,9 @@ export const authController = {
     const sessions = await authService.getSessions(req.user!._id)
     res.json({ success: true, data: sessions })
   }),
+
+  revokeSession: wrap(async (req, res) => {
+    await authService.revokeSession(req.user!._id as never, req.params.id as string)
+    res.json({ success: true, message: 'Session revoked' })
+  }),
 }

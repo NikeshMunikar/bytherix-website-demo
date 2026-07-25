@@ -35,3 +35,8 @@ export interface IUser {
 }
 
 export type UserDocument = HydratedDocument<IUser>
+
+export interface UserListFilters {
+  q?:    string
+  role?: UserRole
+}

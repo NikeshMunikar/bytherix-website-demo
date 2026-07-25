@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, BookOpen, User, Settings, LogOut, ChevronRight } from 'lucide-react'
+import { LayoutDashboard, BookOpen, User, Settings, LogOut, ChevronRight, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/store/auth.store'
 import { apiClient } from '@/lib/api-client'
@@ -37,8 +37,8 @@ export function DashboardSidebar() {
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5">
-        {nav.map(({ icon: Icon, label, href }) => {
-          const active = pathname === href
+        {[...nav, ...(user && (user.role === 'ADMIN' || user.role === 'SUPER_ADMIN') ? [{ icon: Shield, label: 'Admin', href: '/admin' }] : [])].map(({ icon: Icon, label, href }) => {
+          const active = pathname === href || (href === '/admin' && pathname.startsWith('/admin'))
           return (
             <Link key={href} href={href}
               className={cn('flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors group',
