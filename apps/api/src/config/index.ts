@@ -12,6 +12,15 @@ const envSchema = z.object({
   COOKIE_SECRET:           z.string().min(32),
   CLIENT_URL:              z.string().url().default('http://localhost:3000'),
   API_PUBLIC_URL:          z.string().url().default('http://localhost:5000'),
+
+  // eSewa ePay v2 — UAT/sandbox defaults below. Swap ALL of these for real
+  // merchant credentials + production URLs before accepting live payments.
+  // Production form URL:   https://epay.esewa.com.np/api/epay/main/v2/form
+  // Production status URL: https://esewa.com.np/api/epay/transaction/status/
+  ESEWA_MERCHANT_CODE:     z.string().default('EPAYTEST'),
+  ESEWA_SECRET_KEY:        z.string().default('8gBm/:&EnhH.1/q'),
+  ESEWA_FORM_URL:          z.string().url().default('https://rc-epay.esewa.com.np/api/epay/main/v2/form'),
+  ESEWA_STATUS_URL:        z.string().url().default('https://rc.esewa.com.np/api/epay/transaction/status/'),
   SMTP_HOST:               z.string().default('smtp.gmail.com'),
   SMTP_PORT:               z.coerce.number().default(587),
   SMTP_USER:               z.string().default(''),

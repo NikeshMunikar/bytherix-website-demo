@@ -4,7 +4,6 @@ import path from 'node:path'
 const nextConfig: NextConfig = {
   output: 'standalone',
   reactCompiler: false,
-  cacheComponents: true,
   experimental: {
   },
   turbopack: {

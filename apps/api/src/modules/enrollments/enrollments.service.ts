@@ -1,5 +1,6 @@
 import { EnrollmentsRepository }                             from './enrollments.repository'
 import { Course }                                             from '../courses/course.model'
+import { certificatesService }                                from '../certificates/certificates.service'
 import { NotFoundError, ConflictError, ForbiddenError }      from '../../shared/errors/AppError'
 import type { IEnrollment }                                   from './enrollment.model'
 import type { UserRole }                                      from '../users/user.types'
@@ -29,6 +30,10 @@ export class EnrollmentsService {
     return repo.listForUser(userId)
   }
 
+  findByUserAndCourse(userId: string, courseId: string) {
+    return repo.findByUserAndCourse(userId, courseId)
+  }
+
   async getProgress(enrollmentId: string, userId: string, role: UserRole) {
     const enrollment = await repo.findById(enrollmentId)
     if (!enrollment) throw new NotFoundError('Enrollment')
@@ -56,7 +61,11 @@ export class EnrollmentsService {
       }
     }
 
-    return repo.update(enrollmentId, patch)
+    const updated = await repo.update(enrollmentId, patch)
+    if (updated?.status === 'COMPLETED') {
+      await certificatesService.issueForEnrollmentIfEligible(enrollmentId)
+    }
+    return updated
   }
 }
 

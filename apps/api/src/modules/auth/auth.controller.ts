@@ -50,7 +50,7 @@ export const authController = {
   }),
 
   logoutAll: wrap(async (req, res) => {
-    await authService.logoutAll(req.user!._id)
+    await authService.logoutAll(req.user!._id.toString())
     res.clearCookie('refreshToken', { path: '/api/v1/auth' })
     res.json({ success: true, message: 'Logged out from all devices' })
   }),
@@ -72,17 +72,17 @@ export const authController = {
   }),
 
   changePassword: wrap(async (req, res) => {
-    await authService.changePassword(req.user!._id, req.body.currentPassword, req.body.newPassword)
+    await authService.changePassword(req.user!._id.toString(), req.body.currentPassword, req.body.newPassword)
     res.json({ success: true, message: 'Password changed. All sessions revoked.' })
   }),
 
   sessions: wrap(async (req, res) => {
-    const sessions = await authService.getSessions(req.user!._id)
+    const sessions = await authService.getSessions(req.user!._id.toString())
     res.json({ success: true, data: sessions })
   }),
 
   revokeSession: wrap(async (req, res) => {
-    await authService.revokeSession(req.user!._id as never, req.params.id as string)
+    await authService.revokeSession(req.user!._id.toString(), req.params.id as string)
     res.json({ success: true, message: 'Session revoked' })
   }),
 }

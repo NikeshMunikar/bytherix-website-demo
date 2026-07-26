@@ -5,10 +5,10 @@ import { CheckCircle, XCircle, Loader2 } from 'lucide-react'
 import { apiClient } from '@/lib/api-client'
 
 export function VerifyEmailView({ token }: { token: string }) {
-  const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
+  const [status, setStatus] = useState<'loading' | 'success' | 'error'>(token ? 'loading' : 'error')
 
   useEffect(() => {
-    if (!token) { setStatus('error'); return }
+    if (!token) return
     apiClient.get(`/auth/verify-email?token=${encodeURIComponent(token)}`)
       .then(() => setStatus('success'))
       .catch(() => setStatus('error'))

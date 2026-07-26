@@ -5,11 +5,13 @@ import { Sun, Moon } from 'lucide-react'
 export function ThemeToggle() {
   const [dark, setDark] = useState(true)
 
-  // On mount, read saved preference
+  // Reading localStorage/matchMedia must happen after mount (SSR has neither),
+  // so this synchronization can't be moved out of an effect.
   useEffect(() => {
     const saved = localStorage.getItem('theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     const isDark = saved ? saved === 'dark' : prefersDark
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDark(isDark)
     document.documentElement.classList.toggle('light', !isDark)
   }, [])

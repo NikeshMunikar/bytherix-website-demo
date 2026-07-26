@@ -21,8 +21,8 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-xs font-mono font-semibold text-bx-blue uppercase tracking-[0.2em] mb-3">Get In Touch</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-bx-white mb-4">Let's build something great</h1>
-          <p className="text-bx-slate max-w-lg mx-auto">Have a project in mind or want to enroll? We'd love to hear from you.</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-bx-white mb-4">Let&apos;s build something great</h1>
+          <p className="text-bx-slate max-w-lg mx-auto">Have a project in mind or want to enroll? We&apos;d love to hear from you.</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-2 space-y-4">

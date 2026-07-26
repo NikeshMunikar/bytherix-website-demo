@@ -1,5 +1,4 @@
 import express               from 'express'
-import path                  from 'path'
 import helmet                from 'helmet'
 import cors                  from 'cors'
 import cookieParser          from 'cookie-parser'
@@ -21,6 +20,9 @@ import { adminRouter }       from './modules/admin/admin.routes'
 import { uploadRouter }      from './modules/upload/upload.routes'
 import { uploadsDir }        from './modules/upload/upload.config'
 import { postsRouter }       from './modules/blog/posts.routes'
+import { lessonsRouter }     from './modules/lessons/lessons.routes'
+import { certificatesRouter } from './modules/certificates/certificates.routes'
+import { paymentsRouter }     from './modules/payments/payments.routes'
 
 Sentry.init({
   ...(process.env.SENTRY_DSN && {
@@ -88,6 +90,9 @@ app.use('/api/v1/enrollments', enrollmentsRouter)
 app.use('/api/v1/admin', adminRouter)
 app.use('/api/v1/upload', uploadRouter)
 app.use('/api/v1/posts', postsRouter)
+app.use('/api/v1/lessons', lessonsRouter)
+app.use('/api/v1/certificates', certificatesRouter)
+app.use('/api/v1/payments', paymentsRouter)
 
 // ── Uploaded files ────────────────────────────────────────────────────────────
 app.use('/uploads', express.static(uploadsDir, { maxAge: '7d' }))

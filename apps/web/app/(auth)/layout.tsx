@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { CurrentYear } from '@/components/common/CurrentYear'
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,7 +18,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </Link>
       </header>
       <main className="flex-1 flex items-center justify-center px-4 py-12">{children}</main>
-      <footer className="text-center py-4 text-bx-muted text-xs">© {new Date().getFullYear()} Bytherix.</footer>
+      <footer className="text-center py-4 text-bx-muted text-xs">© <CurrentYear /> Bytherix.</footer>
     </div>
   )
 }

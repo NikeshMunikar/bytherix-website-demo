@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "packageManager": "yarn@1.22.22",
+  "resolutions": {
+    "sharp": "^0.35.0",
+    "postcss": "^8.5.18",
+    "body-parser": "^1.20.6"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "engines": {
-    "node": ">=22.0.0",
-    "pnpm": ">=11.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "dev": "turbo dev",

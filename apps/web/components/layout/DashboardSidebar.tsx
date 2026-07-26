@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, BookOpen, User, Settings, LogOut, ChevronRight, Shield } from 'lucide-react'
+import { LayoutDashboard, BookOpen, User, Settings, LogOut, ChevronRight, Shield, Award } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/store/auth.store'
 import { apiClient } from '@/lib/api-client'
@@ -10,6 +10,7 @@ import { apiClient } from '@/lib/api-client'
 const nav = [
   { icon: LayoutDashboard, label: 'Dashboard',   href: '/dashboard' },
   { icon: BookOpen,        label: 'My Learning', href: '/my-learning' },
+  { icon: Award,           label: 'Certificates', href: '/certificates' },
   { icon: User,            label: 'Profile',     href: '/profile' },
   { icon: Settings,        label: 'Settings',    href: '/settings' },
 ]

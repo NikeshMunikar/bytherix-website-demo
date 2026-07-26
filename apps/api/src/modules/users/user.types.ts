@@ -10,7 +10,7 @@ export interface IUser {
   _id: Types.ObjectId
 
   email: string
-  password?: string
+  password?: string | undefined
 
   firstName: string
   lastName: string
@@ -20,18 +20,18 @@ export interface IUser {
   isActive: boolean
   isEmailVerified: boolean
 
-  emailVerificationToken?: string
-  emailVerificationExpiry?: Date
+  emailVerificationToken?: string | undefined
+  emailVerificationExpiry?: Date | undefined
 
-  passwordResetToken?: string
-  passwordResetExpiry?: Date
+  passwordResetToken?: string | undefined
+  passwordResetExpiry?: Date | undefined
 
-  avatar?: string
-  lastLoginAt?: Date
+  avatar?: string | undefined
+  lastLoginAt?: Date | undefined
 
   createdAt: Date
   updatedAt: Date
-  deletedAt?: Date
+  deletedAt?: Date | undefined
 }
 
 export type UserDocument = HydratedDocument<IUser>
