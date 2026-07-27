@@ -33,6 +33,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/certificates/verify`,         lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
     { url: `${base}/about`,                       lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/contact`,                     lastModified: now, changeFrequency: 'yearly',  priority: 0.5 },
+    { url: `${base}/privacy-policy`,               lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
+    { url: `${base}/terms-of-service`,             lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
   ]
 
   const [courses, posts] = await Promise.all([

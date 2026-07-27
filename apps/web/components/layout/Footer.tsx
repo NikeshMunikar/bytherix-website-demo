@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { CurrentYear } from '@/components/common/CurrentYear'
 
 const footerLinks = {
   Academy: [
@@ -197,7 +198,7 @@ export function Footer() {
           style={{ borderTop: '1px solid #1a2236' }}
         >
           <p className="text-xs" style={{ color: '#4A5A7A' }}>
-            © 2024 Bytherix. All rights reserved.
+            © <CurrentYear /> Bytherix. All rights reserved.
           </p>
 
           <div className="flex items-center gap-6">

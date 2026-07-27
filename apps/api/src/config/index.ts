@@ -12,6 +12,10 @@ const envSchema = z.object({
   COOKIE_SECRET:           z.string().min(32),
   CLIENT_URL:              z.string().url().default('http://localhost:3000'),
   API_PUBLIC_URL:          z.string().url().default('http://localhost:5000'),
+  // Disk-backed, persistent across restarts (unlike tmpfs) — see docker-compose.yml's
+  // uploads_data volume, mounted here in the container. Defaults to a local
+  // ./uploads folder for development outside Docker.
+  UPLOAD_DIR:              z.string().default('./uploads'),
 
   // eSewa ePay v2 — UAT/sandbox defaults below. Swap ALL of these for real
   // merchant credentials + production URLs before accepting live payments.

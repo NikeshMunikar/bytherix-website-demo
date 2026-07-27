@@ -4,6 +4,7 @@ import { toast } from 'sonner'
 import { isAxiosError } from 'axios'
 import { Plus, Trash2, GripVertical, Loader2, Video } from 'lucide-react'
 import { useLessons, useCreateLesson, useUpdateLesson, useDeleteLesson, type LessonInput } from '@/hooks/useLessons'
+import { VideoUpload } from '@/components/common/VideoUpload'
 import type { VideoSource } from '@/lib/types/lesson'
 
 const inputClass = 'px-3 py-2 rounded-lg bg-bx-navy border border-bx-border text-bx-white placeholder:text-bx-muted text-sm focus:outline-none focus:border-bx-blue transition-colors'
@@ -91,7 +92,13 @@ export function LessonManager({ courseId }: { courseId: string }) {
           </select>
           <input type="number" min={0} placeholder="Duration (min)" value={form.durationMins}
             onChange={(e) => setForm({ ...form, durationMins: Number(e.target.value) })} className={inputClass} />
-          <input placeholder="Video URL" value={form.videoUrl} onChange={(e) => setForm({ ...form, videoUrl: e.target.value })} className={`${inputClass} col-span-2`} />
+          {form.videoSource === 'upload' ? (
+            <div className="col-span-2">
+              <VideoUpload value={form.videoUrl} onChange={(url) => setForm({ ...form, videoUrl: url })} />
+            </div>
+          ) : (
+            <input placeholder="Video URL" value={form.videoUrl} onChange={(e) => setForm({ ...form, videoUrl: e.target.value })} className={`${inputClass} col-span-2`} />
+          )}
           <label className="flex items-center gap-2 text-sm text-bx-slate col-span-2">
             <input type="checkbox" checked={form.isPreview} onChange={(e) => setForm({ ...form, isPreview: e.target.checked })} className="rounded border-bx-border" />
             Free preview (visible without enrolling)

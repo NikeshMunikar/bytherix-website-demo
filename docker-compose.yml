@@ -101,11 +101,14 @@ services:
       PORT:         ${API_PORT:-5000}
       MONGODB_URI:  ${MONGODB_URI}
       REDIS_URL:    ${REDIS_URL}
+      UPLOAD_DIR:   /app/uploads
     ports:
       - "${API_PORT:-5000}:5000"
     networks:
       - bytherix_internal
       - bytherix_external
+    volumes:
+      - uploads_data:/app/uploads
     depends_on:
       mongo:
         condition: service_healthy
@@ -204,4 +207,6 @@ volumes:
   mongo_config:
     driver: local
   redis_data:
+    driver: local
+  uploads_data:
     driver: local
