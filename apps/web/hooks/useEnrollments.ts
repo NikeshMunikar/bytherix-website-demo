@@ -29,3 +29,17 @@ export function useEnrollInCourse() {
     },
   })
 }
+
+export function useUpdateEnrollmentProgress() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ id, progress, completedLessons }: { id: string; progress?: number; completedLessons?: string[] }) => {
+      const { data } = await apiClient.put<{ success: boolean; data: Enrollment }>(`/enrollments/${id}/progress`, { progress, completedLessons })
+      return data.data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['enrollments', 'me'] })
+      queryClient.invalidateQueries({ queryKey: ['certificates', 'me'] })
+    },
+  })
+}

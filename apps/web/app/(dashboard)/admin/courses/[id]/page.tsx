@@ -3,6 +3,7 @@ import { use } from 'react'
 import { AlertTriangle } from 'lucide-react'
 import { useAdminCourse } from '@/hooks/useAdminCourses'
 import { CourseForm } from '@/components/admin/CourseForm'
+import { LessonManager } from '@/components/admin/LessonManager'
 
 export default function EditCoursePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
@@ -22,9 +23,10 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <h2 className="text-lg font-semibold text-bx-white">Edit course</h2>
       <CourseForm course={course} />
+      <LessonManager courseId={course._id} />
     </div>
   )
 }

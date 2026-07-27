@@ -1,17 +1,14 @@
-import { Suspense } from "react";
-import type { Metadata } from "next";
-import { VerifyEmailView } from "@/components/auth/VerifyEmailView";
+import type { Metadata } from 'next'
+import { Suspense } from 'react'
+import { VerifyEmailView } from '@/components/auth/VerifyEmailView'
 
-export const metadata: Metadata = {
-  title: "Verify Email",
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = { title: 'Verify Email', robots: { index: false, follow: false } }
 
-type Props = { searchParams: Promise<{ token?: string }> };
+type Props = { searchParams: Promise<{ token?: string }> }
 
 async function VerifyEmailLoader({ searchParams }: Props) {
-  const { token } = await searchParams;
-  return <VerifyEmailView token={token ?? ""} />;
+  const { token } = await searchParams
+  return <VerifyEmailView token={token ?? ''} />
 }
 
 export default function VerifyEmailPage({ searchParams }: Props) {
@@ -21,5 +18,5 @@ export default function VerifyEmailPage({ searchParams }: Props) {
         <VerifyEmailLoader searchParams={searchParams} />
       </Suspense>
     </div>
-  );
+  )
 }

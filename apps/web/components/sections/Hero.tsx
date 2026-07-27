@@ -4,12 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, Briefcase } from 'lucide-react'
 
-const _floatingChips = [
-  { label: '500+ students', emoji: '🎓', delay: 0,   x: '-left-10',  y: '-top-6' },
-  { label: 'Certified courses', emoji: '✅', delay: 0.4, x: '-right-8', y: '-top-4' },
-  { label: '95% hired', emoji: '💼', delay: 0.8, x: '-right-12', y: 'bottom-8' },
-]
-
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16">

@@ -23,8 +23,8 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dhOpen,     setDhOpen]     = useState(false)
   const pathname = usePathname()
-
   const [prevPathname, setPrevPathname] = useState(pathname)
+
   if (pathname !== prevPathname) {
     setPrevPathname(pathname)
     setMobileOpen(false)
@@ -35,6 +35,7 @@ export function Navbar() {
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
+
 
   return (
     <>

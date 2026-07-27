@@ -1,5 +1,4 @@
 import { Router }     from 'express'
-// import { z }          from 'zod'
 import { authController }           from './auth.controller'
 import { validate }                 from '../../middleware/validate'
 import { authenticate }             from '../../middleware/authenticate'

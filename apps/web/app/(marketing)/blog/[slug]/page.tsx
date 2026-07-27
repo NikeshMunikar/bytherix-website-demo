@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Clock, ArrowLeft } from 'lucide-react'
@@ -31,7 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function BlogDetailPage({ params }: Props) {
+// The actual data fetch is isolated in this inner async component so it can
+// be wrapped in <Suspense> below — required by Next 16 Cache Components so
+// this route's dynamic fetch doesn't block the shared marketing layout
+// (Navbar reads usePathname) from prerendering statically.
+async function BlogDetailContent({ params }: Props) {
   const { slug } = await params
   const post = await fetchPost(slug)
   if (!post) notFound()
@@ -74,5 +79,26 @@ export default async function BlogDetailPage({ params }: Props) {
         )}
       </div>
     </article>
+  )
+}
+
+function BlogDetailSkeleton() {
+  return (
+    <div className="pt-28 pb-20 bg-bx-navy">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 animate-pulse">
+        <div className="h-64 sm:h-96 rounded-2xl bg-bx-border mb-10" />
+        <div className="h-8 w-2/3 bg-bx-border rounded mb-4" />
+        <div className="h-4 w-full bg-bx-border rounded mb-2" />
+        <div className="h-4 w-5/6 bg-bx-border rounded" />
+      </div>
+    </div>
+  )
+}
+
+export default function BlogDetailPage({ params }: Props) {
+  return (
+    <Suspense fallback={<BlogDetailSkeleton />}>
+      <BlogDetailContent params={params} />
+    </Suspense>
   )
 }

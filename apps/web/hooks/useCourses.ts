@@ -17,3 +17,14 @@ export function useCourses(filters: CourseFilters = {}) {
     },
   })
 }
+
+export function useCourse(slug: string | undefined) {
+  return useQuery({
+    queryKey: ['courses', 'slug', slug],
+    queryFn: async () => {
+      const { data } = await apiClient.get<{ success: boolean; data: Course }>(`/courses/${slug}`)
+      return data.data
+    },
+    enabled: !!slug,
+  })
+}

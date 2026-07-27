@@ -24,3 +24,21 @@ export async function authenticate(req: Request, _res: Response, next: NextFunct
     else next(err)
   }
 }
+
+// Attaches req.user when a valid bearer token is present, but never rejects
+// the request — for public endpoints whose response varies by auth state
+// (e.g. lesson video access: preview vs. enrolled vs. anonymous).
+export async function authenticateOptional(req: Request, _res: Response, next: NextFunction): Promise<void> {
+  const header = req.headers.authorization
+  if (!header?.startsWith('Bearer ')) { next(); return }
+
+  try {
+    const token   = header.slice(7)
+    const payload = jwt.verify(token, config.JWT_ACCESS_SECRET) as { sub: string; role: string }
+    const user    = await repo.findById(payload.sub)
+    if (user?.isActive) req.user = user
+  } catch {
+    // Invalid/expired token on an optional-auth route — proceed as anonymous
+  }
+  next()
+}

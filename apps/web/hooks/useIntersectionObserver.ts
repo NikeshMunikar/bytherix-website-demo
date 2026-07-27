@@ -18,6 +18,7 @@ export function useIntersectionObserver(
     }, opts)
     observer.observe(node)
     return () => observer.disconnect()
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- opts is a new object every render; depend on its primitive fields instead
   }, [ref, freezeOnceVisible, opts.threshold, opts.root, opts.rootMargin])
 
   return { isIntersecting: entry?.isIntersecting ?? false }
