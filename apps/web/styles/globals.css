@@ -57,6 +57,26 @@
   --color-text-secondary-light:#57606A;
   --color-border-default-light:#D0D7DE;
 
+  /* ── bx- aliases ───────────────────────────────────────────────────────────
+     Most components use bg-bx-navy / text-bx-slate / border-bx-border style
+     classes rather than the tokens above directly. These aliases point at the
+     runtime custom properties defined below (--bg-base, --text-primary, etc.)
+     so every bg-bx-*/text-bx-*/border-bx-* utility actually resolves to real
+     CSS and stays in sync with the current .light / dark theme automatically. */
+  --color-bx-navy:        var(--bg-base);
+  --color-bx-card:        var(--bg-surface);
+  --color-bx-white:       var(--text-primary);
+  --color-bx-slate:       var(--text-secondary);
+  --color-bx-muted:       var(--text-tertiary);
+  --color-bx-border:      var(--border);
+  --color-bx-blue:        var(--color-brand-blue);
+  --color-bx-blue-light:  var(--link-strong);
+  --color-bx-green:       var(--color-brand-green);
+  --color-bx-green-light: var(--accent-green-strong);
+  --color-bx-red:         var(--color-brand-red);
+  --color-bx-amber:       var(--color-accent-amber);
+  --color-bx-purple:      var(--color-accent-purple);
+
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
@@ -112,6 +132,9 @@ html {
   --text-tertiary:  var(--color-text-tertiary);
   --border:         var(--color-border-default);
   --border-muted:   var(--color-border-muted);
+  /* Vivid accents — brighter on dark backgrounds, deepened for contrast on light ones */
+  --link-strong:        #2D6EEF;
+  --accent-green-strong:#22C55E;
 }
 
 /* ── Light mode ──────────────────────────────────────────────────────────── */
@@ -126,6 +149,9 @@ html {
   --text-tertiary:  #8C959F;
   --border:         var(--color-border-default-light);
   --border-muted:   #EAEEF2;
+  /* Deepened so these still read clearly against a white background */
+  --link-strong:        var(--color-brand-blue-dim);
+  --accent-green-strong:var(--color-brand-green-dim);
 }
 
 body {
@@ -154,14 +180,16 @@ body {
 
 /* ── Semantic component classes ──────────────────────────────────────────── */
 
-/* Card — used everywhere, responds to light/dark */
-.card {
+/* Card — used everywhere, responds to light/dark. .bx-card is an alias used
+   directly as a className in several components (admin forms, services grid,
+   projects grid, process section) — it was previously undefined. */
+.card, .bx-card {
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
-.card:hover {
+.card:hover, .bx-card:hover {
   border-color: var(--color-brand-blue-border);
   box-shadow: 0 4px 24px rgba(37,99,235,0.08), 0 1px 4px rgba(0,0,0,0.2);
 }
