@@ -1,11 +1,9 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
-import { Clock, Users, Star, BookOpen, Shield, Lock, PlayCircle, AlertTriangle, Loader2 } from 'lucide-react'
+import { Clock, Users, Star, BookOpen, Shield, Lock, PlayCircle, AlertTriangle } from 'lucide-react'
 import { useCourse } from '@/hooks/useCourses'
 import { useLessons } from '@/hooks/useLessons'
 import { useMyEnrollments } from '@/hooks/useEnrollments'
-import { useInitiatePayment, submitToEsewa } from '@/hooks/usePayments'
 import { useAuth } from '@/hooks/useAuth'
 import { formatCurrency } from '@/lib/utils'
 
@@ -15,27 +13,15 @@ export function CourseDetail({ slug }: { slug: string }) {
   const { data: course, isLoading, isError } = useCourse(slug)
   const { data: lessons } = useLessons(course?._id)
   const { data: enrollments } = useMyEnrollments()
-  const initiate = useInitiatePayment()
 
   const enrollment = enrollments?.find((e) => e.course.slug === slug)
 
-  const handleEnroll = async () => {
-    if (!course) return
+  const handleEnroll = () => {
     if (!isAuthenticated) {
-      router.push(`/login?redirect=/training/${slug}`)
+      router.push(`/login?redirect=/checkout/${slug}`)
       return
     }
-    try {
-      const result = await initiate.mutateAsync(course._id)
-      if (result.free) {
-        toast.success('Enrolled! Let\'s get started.')
-        router.push(`/training/${slug}/learn`)
-      } else {
-        submitToEsewa(result.formUrl, result.fields)
-      }
-    } catch {
-      toast.error('Could not start checkout. Please try again.')
-    }
+    router.push(`/checkout/${slug}`)
   }
 
   if (isLoading) {
@@ -95,9 +81,8 @@ export function CourseDetail({ slug }: { slug: string }) {
                 Continue Learning
               </button>
             ) : (
-              <button onClick={handleEnroll} disabled={initiate.isPending}
-                className="w-full py-3 rounded-xl bg-bx-blue hover:bg-bx-blue-light text-white font-bold transition-colors mb-3 disabled:opacity-50 flex items-center justify-center gap-2">
-                {initiate.isPending && <Loader2 className="w-4 h-4 animate-spin" />}
+              <button onClick={handleEnroll}
+                className="w-full py-3 rounded-xl bg-bx-blue hover:bg-bx-blue-light text-white font-bold transition-colors mb-3">
                 {course.price > 0 ? 'Enroll Now' : 'Enroll for Free'}
               </button>
             )}

@@ -8,6 +8,7 @@ export interface AuthUser {
   role: 'USER' | 'MODERATOR' | 'ADMIN' | 'SUPER_ADMIN'
   avatar?: string
   isEmailVerified: boolean
+  emailNotifications?: boolean
 }
 
 interface AuthState {

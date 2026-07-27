@@ -155,6 +155,17 @@ export class AuthService {
     if (!session) throw new NotFoundError('Session')
     await Session.findByIdAndUpdate(sessionId, { isRevoked: true })
   }
+
+  async deleteOwnAccount(userId: string, password: string): Promise<void> {
+    const user = await repo.findByIdWithPassword(userId)
+    if (!user) throw new NotFoundError('User')
+    if (!user.password) throw new UnauthorizedError('Password confirmation is incorrect')
+    const valid = await argon2.verify(user.password, password)
+    if (!valid) throw new UnauthorizedError('Password confirmation is incorrect')
+
+    await repo.softDelete(userId)
+    await this.logoutAll(userId)
+  }
 }
 
 export const authService = new AuthService()

@@ -2,9 +2,16 @@ import { z } from 'zod'
 
 export const updateMeSchema = {
   body: z.object({
-    firstName: z.string().min(2).max(50).trim().optional(),
-    lastName:  z.string().min(2).max(50).trim().optional(),
-    avatar:    z.string().url().optional(),
+    firstName:          z.string().min(2).max(50).trim().optional(),
+    lastName:           z.string().min(2).max(50).trim().optional(),
+    avatar:             z.string().url().optional(),
+    emailNotifications: z.boolean().optional(),
+  }),
+}
+
+export const deleteMeSchema = {
+  body: z.object({
+    password: z.string().min(1, 'Password confirmation is required'),
   }),
 }
 

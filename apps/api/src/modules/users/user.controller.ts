@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express'
 import { UserRepository }                         from './user.repository'
+import { authService }                             from '../auth/auth.service'
 import { NotFoundError, ForbiddenError }          from '../../shared/errors/AppError'
 import type { UserListFilters }                    from './user.types'
 
@@ -17,6 +18,11 @@ export const userController = {
   updateMe: wrap(async (req, res) => {
     const updated = await repo.update(req.user!._id as never, req.body)
     res.json({ success: true, data: updated })
+  }),
+
+  deleteMe: wrap(async (req, res) => {
+    await authService.deleteOwnAccount(req.user!._id as never, req.body.password)
+    res.json({ success: true, message: 'Account deleted' })
   }),
 
   list: wrap(async (req, res) => {
