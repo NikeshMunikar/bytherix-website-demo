@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Shield, Terminal, Users, Trophy, ExternalLink } from "lucide-react";
 import { TerminalText } from "./TerminalText";
-import Link from "next/link";
 
 interface DHOverlayProps {
   open: boolean;
