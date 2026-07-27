@@ -28,6 +28,7 @@ export interface IUser {
 
   avatar?: string | undefined
   lastLoginAt?: Date | undefined
+  emailNotifications?: boolean
 
   createdAt: Date
   updatedAt: Date

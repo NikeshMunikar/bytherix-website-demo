@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ProfileForm } from '@/components/dashboard/ProfileForm'
+import { ProfileStats } from '@/components/dashboard/ProfileStats'
 
 export const metadata: Metadata = { title: 'Profile', robots: { index: false, follow: false } }
 
@@ -10,6 +11,7 @@ export default function ProfilePage() {
         <h1 className="text-2xl font-bold text-bx-white">Profile</h1>
         <p className="text-bx-slate text-sm">Manage your personal information.</p>
       </div>
+      <ProfileStats />
       <ProfileForm />
     </div>
   )

@@ -28,6 +28,7 @@ const userSchema = new Schema<IUser>(
     passwordResetExpiry: { type: Date, select: false },
     avatar: String,
     lastLoginAt: Date,
+    emailNotifications: { type: Boolean, default: true },
     deletedAt: { type: Date, index: true },
   },
   {
