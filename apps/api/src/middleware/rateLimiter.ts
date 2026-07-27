@@ -1,10 +1,13 @@
 import { rateLimit } from "express-rate-limit";
-import { RedisStore } from "rate-limit-redis";
+import { RedisStore, type RedisReply } from "rate-limit-redis";
 import { redis } from "../config/redis";
 
 function store(prefix: string) {
+  const sendCommand = (...args: string[]): Promise<RedisReply> =>
+    (redis.call as (...cmdArgs: string[]) => Promise<RedisReply>)(...args)
+
   return new RedisStore({
-    sendCommand: (...args: string[]) => (redis.call as any)(...args),
+    sendCommand,
     prefix,
   });
 }
@@ -45,4 +48,11 @@ export const contactLimiter = rateLimit({
   max: 10,
   store: store("rl:contact:"),
   message: { success: false, error: "Too many messages sent. Please try again later." },
+});
+
+export const paymentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 15,
+  store: store("rl:payment:"),
+  message: { success: false, error: "Too many payment attempts. Please try again later." },
 });

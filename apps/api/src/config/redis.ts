@@ -21,8 +21,9 @@ export async function connectRedis(): Promise<void> {
   }
   try {
     await redis.connect()
-  } catch (err: any) {
-    if (err?.message?.includes('already')) return
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : ''
+    if (message.includes('already')) return
     throw err
   }
 }
