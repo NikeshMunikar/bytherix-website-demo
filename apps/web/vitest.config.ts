@@ -1,9 +1,12 @@
 import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
 import path from 'path'
 
+// No @vitejs/plugin-react here on purpose: nothing in the current test suite
+// renders JSX (lib/utils.test.ts is plain functions, useDebounce.test.ts uses
+// renderHook without JSX). Add the plugin back only once an actual .tsx
+// component test needs it — it pulls in `vite` as a peer dependency, which
+// this yarn-classic monorepo has some trouble hoisting cleanly.
 export default defineConfig({
-  plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
