@@ -58,11 +58,13 @@
   --color-border-default-light:#D0D7DE;
 
   /* ── bx- aliases ───────────────────────────────────────────────────────────
-     Most components use bg-bx-navy / text-bx-slate / border-bx-border style
-     classes rather than the tokens above directly. These aliases point at the
-     runtime custom properties defined below (--bg-base, --text-primary, etc.)
-     so every bg-bx-*/text-bx-*/border-bx-* utility actually resolves to real
-     CSS and stays in sync with the current .light / dark theme automatically. */
+   Most components use bg-bx-navy / text-bx-slate / border-bx-border style
+   classes rather than the tokens above directly. These aliases point at the
+   runtime custom properties defined below (--bg-base, --text-primary, etc.)
+   so every bg-bx-, text-bx-, and border-bx- utility actually resolves to real
+   CSS and stays in sync with the current .light / dark theme automatically.
+*/
+
   --color-bx-navy:        var(--bg-base);
   --color-bx-card:        var(--bg-surface);
   --color-bx-white:       var(--text-primary);

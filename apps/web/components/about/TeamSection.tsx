@@ -3,12 +3,12 @@ import { motion } from 'framer-motion'
 import { Github, Linkedin, Twitter } from 'lucide-react'
 
 const team = [
-  { name: 'Rakesh Sharma',   role: 'Founder & Lead Developer',      initials: 'RS', color: '#1452CC' },
-  { name: 'Priya Thapa',     role: 'Head of Cyber Security',        initials: 'PT', color: '#DC2626' },
-  { name: 'Amit Gurung',     role: 'Senior Full Stack Developer',   initials: 'AG', color: '#22C55E' },
-  { name: 'Sita Basnet',     role: 'AI & ML Engineer',              initials: 'SB', color: '#F59E0B' },
-  { name: 'Deepak Rai',      role: 'DevOps & Cloud Engineer',       initials: 'DR', color: '#0EA5E9' },
-  { name: 'Anjali Shrestha', role: 'UI/UX & Frontend Developer',   initials: 'AS', color: '#9333EA' },
+  { name: 'Anish Parajuli',   role: 'Founder & Lead Developer',      initials: 'AP', color: '#1452CC' },
+  { name: 'Nikesh Munikar',     role: 'MD & Full Stack Developer',        initials: 'NM', color: '#DC2626' },
+  { name: 'Prabind Kumar Mahato',     role: 'HR & Digital Forensics',   initials: 'PKM', color: '#22C55E' },
+  { name: 'Namling Limbu',     role: 'Creative Head',              initials: 'NL', color: '#F59E0B' },
+  { name: 'Shriya Pantha',      role: 'Project Manager & MERN Developer',       initials: 'SP', color: '#0EA5E9' },
+  { name: 'Anjit Paswani', role: 'Client Relationship Manager',   initials: 'AP', color: '#9333EA' }
 ]
 
 export function TeamSection() {
