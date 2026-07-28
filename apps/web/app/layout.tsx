@@ -90,13 +90,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-bx-navy text-bx-white font-sans antialiased">
         <QueryProvider><AuthProvider>{children}</AuthProvider></QueryProvider>
         <Toaster
-          theme="dark"
+          theme="system"
           position="bottom-right"
           toastOptions={{
             style: {
-              background: '#0D1A2E',
-              border: '1px solid #1E2D4A',
-              color: '#F8FAFF',
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border)',
+              color: 'var(--text-primary)',
             },
           }}
         />

@@ -37,7 +37,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 relative" aria-labelledby="testimonials-heading" style={{ backgroundColor: '#050D1A' }}>
+    <section className="py-24 relative" aria-labelledby="testimonials-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -12,7 +12,7 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section className="py-24 bg-[#050D1A]">
+    <section className="py-24 bg-[var(--bg-surface)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-xs font-mono font-semibold text-bx-green uppercase tracking-[0.2em] mb-3">How We Work</p>

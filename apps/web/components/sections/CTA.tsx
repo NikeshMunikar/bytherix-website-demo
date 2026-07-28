@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, Briefcase } from 'lucide-react'
 
 export function CTA() {
   return (
-    <section className="py-24 relative overflow-hidden" aria-label="Call to action" style={{ backgroundColor: '#060E1C' }}>
+    <section className="py-24 relative overflow-hidden" aria-label="Call to action" style={{ backgroundColor: 'var(--bg-surface)' }}>
       {/* Glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
