@@ -16,10 +16,14 @@ const skills = [
 export function LearnSkills() {
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <section className="py-24 relative" aria-labelledby="skills-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
 =======
     <section className="py-24 relative border-t border-[#1E2D4A]" aria-labelledby="skills-heading">
 >>>>>>> af142b9d2c2736c934f34a0bf6f848ee0e41db28
+=======
+    <section className="py-28 md:py-32 relative" aria-labelledby="skills-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
+>>>>>>> d9a2372529a118fcd0093fa92b6bb93360b3ceda
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
 
@@ -57,8 +61,7 @@ export function LearnSkills() {
               >
                 <Link
                   href={skill.href}
-                  className="group flex flex-col items-center text-center p-4 rounded-2xl border transition-all duration-200 hover:-translate-y-1 bg-[var(--bg-surface)]"
-                  style={{borderColor: '#1E2D4A' }}
+                  className="group flex flex-col items-center text-center p-4 rounded-2xl border transition-all duration-200 hover:-translate-y-1 bg-[var(--bg-surface)] border-[var(--border)]"
                 >
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200"

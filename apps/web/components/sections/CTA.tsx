@@ -12,7 +12,11 @@ export function CTA() {
 >>>>>>> af142b9d2c2736c934f34a0bf6f848ee0e41db28
       {/* Glow */}
       <div
+<<<<<<< HEAD
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(600px,80vw)] h-[min(400px,50vh)] rounded-full pointer-events-none"
+=======
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[37.5rem] h-[25rem] rounded-full pointer-events-none"
+>>>>>>> d9a2372529a118fcd0093fa92b6bb93360b3ceda
         style={{ background: 'rgba(20,82,204,0.08)', filter: 'blur(80px)' }}
       />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />

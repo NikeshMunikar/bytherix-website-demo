@@ -6,7 +6,7 @@ import { ArrowRight, BookOpen, Briefcase } from 'lucide-react'
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-28 sm:pt-24">
       {/* Background */}
       <div className="absolute inset-0 circuit-grid opacity-60" aria-hidden="true" />
       <div
