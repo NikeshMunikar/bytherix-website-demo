@@ -9,8 +9,8 @@
      Red:   sampled from security/shield segment
   ── */
 
-  /* Backgrounds — warmer than pure navy, less "bootstrap dark" */
-  --color-bg-base:        #0D1117;   /* GitHub-dark inspired, warmer than #0A1628 */
+  /* Backgrounds — aligned with the bx-* tokens used across the rest of the app */
+  --color-bg-base:        #0A1628;   /* = bx-navy, single source of truth for the page background */
   --color-bg-surface:     #161B22;   /* cards, panels */
   --color-bg-elevated:    #1C2128;   /* modals, dropdowns */
   --color-bg-subtle:      #21262D;   /* hover states */

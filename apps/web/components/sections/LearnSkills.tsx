@@ -15,7 +15,7 @@ const skills = [
 
 export function LearnSkills() {
   return (
-    <section className="py-24 relative" aria-labelledby="skills-heading" style={{ backgroundColor: '#050D1A' }}>
+    <section className="py-24 relative border-t border-[#1E2D4A]" aria-labelledby="skills-heading">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
 

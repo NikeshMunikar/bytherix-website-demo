@@ -38,7 +38,7 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 
 export function Stats() {
   return (
-    <section className="py-20 bg-gradient-to-r from-rs-blue-900 via-gray-900 to-rs-green-600">
+    <section className="py-20 border-t border-[#1E2D4A]" style={{ background: 'linear-gradient(90deg, #0A1628 0%, #0F2A5C 50%, #0F5C33 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
