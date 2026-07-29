@@ -64,7 +64,7 @@ const socials = [
 export function Footer() {
   return (
     <footer
-      style={{ backgroundColor: '#0b0f1a', borderTop: '1px solid #1a2236' }}
+      style={{ backgroundColor: '#0b0f1a', borderTop: '1px solid #1E2D4A' }}
       role="contentinfo"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -161,7 +161,7 @@ export function Footer() {
         {/* ── Company row — sits below the main grid ── */}
         <div
           className="pb-12"
-          style={{ borderTop: '1px solid #1a2236', paddingTop: '2.5rem' }}
+          style={{ borderTop: '1px solid #1E2D4A', paddingTop: '2.5rem' }}
         >
           <div>
             <h3
@@ -195,7 +195,7 @@ export function Footer() {
         {/* ── Bottom bar ── */}
         <div
           className="py-6 flex flex-col sm:flex-row items-center justify-between gap-3"
-          style={{ borderTop: '1px solid #1a2236' }}
+          style={{ borderTop: '1px solid #1E2D4A' }}
         >
           <p className="text-xs" style={{ color: '#4A5A7A' }}>
             © <CurrentYear /> Bytherix. All rights reserved.

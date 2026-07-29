@@ -5,10 +5,14 @@ import { ArrowRight, BookOpen, Briefcase } from 'lucide-react'
 
 export function CTA() {
   return (
+<<<<<<< HEAD
     <section className="py-24 relative overflow-hidden" aria-label="Call to action" style={{ backgroundColor: 'var(--bg-surface)' }}>
+=======
+    <section className="py-24 relative overflow-hidden border-t border-[#1E2D4A]" aria-label="Call to action">
+>>>>>>> af142b9d2c2736c934f34a0bf6f848ee0e41db28
       {/* Glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(600px,80vw)] h-[min(400px,50vh)] rounded-full pointer-events-none"
         style={{ background: 'rgba(20,82,204,0.08)', filter: 'blur(80px)' }}
       />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
