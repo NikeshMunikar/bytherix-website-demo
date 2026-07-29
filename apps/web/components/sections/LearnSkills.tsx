@@ -15,15 +15,7 @@ const skills = [
 
 export function LearnSkills() {
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <section className="py-24 relative" aria-labelledby="skills-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
-=======
-    <section className="py-24 relative border-t border-[#1E2D4A]" aria-labelledby="skills-heading">
->>>>>>> af142b9d2c2736c934f34a0bf6f848ee0e41db28
-=======
-    <section className="py-28 md:py-32 relative" aria-labelledby="skills-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
->>>>>>> d9a2372529a118fcd0093fa92b6bb93360b3ceda
+<section className="py-28 md:py-32 relative" aria-labelledby="skills-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
 

@@ -84,11 +84,7 @@ const item = {
 
 export function WhatWeDo() {
   return (
-<<<<<<< HEAD
-    <section className="py-24 relative border-t border-[#1E2D4A]" aria-labelledby="what-we-do-heading">
-=======
     <section className="py-28 md:py-32 relative" aria-labelledby="what-we-do-heading">
->>>>>>> d9a2372529a118fcd0093fa92b6bb93360b3ceda
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

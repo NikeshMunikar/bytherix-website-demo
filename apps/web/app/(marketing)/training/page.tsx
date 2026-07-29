@@ -19,7 +19,10 @@ async function CourseGridLoader({ searchParams }: Props) {
 export default function TrainingPage({ searchParams }: Props) {
   return (
     <>
-      <TrainingHero />
+      <Suspense fallback={null}>
+        <TrainingHero />
+      </Suspense>
+
       <Suspense fallback={null}>
         <CourseGridLoader searchParams={searchParams} />
       </Suspense>

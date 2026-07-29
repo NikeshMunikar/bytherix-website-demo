@@ -63,11 +63,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-<<<<<<< HEAD
           <div className="hidden lg:flex items-center gap-1.5">
-=======
-          <div className="hidden lg:flex items-center gap-2">
->>>>>>> d9a2372529a118fcd0093fa92b6bb93360b3ceda
             {navLinks.map((link) => {
               const active = pathname === link.href
               return (
