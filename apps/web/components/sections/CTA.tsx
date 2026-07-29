@@ -8,7 +8,7 @@ export function CTA() {
     <section className="py-24 relative overflow-hidden" aria-label="Call to action" style={{ backgroundColor: 'var(--bg-surface)' }}>
       {/* Glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[37.5rem] h-[25rem] rounded-full pointer-events-none"
         style={{ background: 'rgba(20,82,204,0.08)', filter: 'blur(80px)' }}
       />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />

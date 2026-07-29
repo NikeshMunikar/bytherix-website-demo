@@ -15,7 +15,7 @@ const skills = [
 
 export function LearnSkills() {
   return (
-    <section className="py-24 relative" aria-labelledby="skills-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
+    <section className="py-28 md:py-32 relative" aria-labelledby="skills-heading" style={{ backgroundColor: 'var(--bg-surface)' }}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-bx-border to-transparent" />
 
@@ -53,8 +53,7 @@ export function LearnSkills() {
               >
                 <Link
                   href={skill.href}
-                  className="group flex flex-col items-center text-center p-4 rounded-2xl border transition-all duration-200 hover:-translate-y-1 bg-[var(--bg-surface)]"
-                  style={{borderColor: '#1E2D4A' }}
+                  className="group flex flex-col items-center text-center p-4 rounded-2xl border transition-all duration-200 hover:-translate-y-1 bg-[var(--bg-surface)] border-[var(--border)]"
                 >
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200"
